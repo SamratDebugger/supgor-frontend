@@ -1,6 +1,7 @@
 import Alert from "./Alert";
 import NavBottom from "./NavBottom";
 import NavMain from "./NavMain";
+import NavMenus from "./NavMenus";
 import NavTop from "./NavTop";
 
 export default function Drawer({ children }) {
@@ -18,7 +19,9 @@ export default function Drawer({ children }) {
           <NavTop />
         </div>
         <NavMain />
-        <NavBottom />
+        <div className="max-lg:hidden">
+          <NavBottom />
+        </div>
 
         {/* Page content here */}
         <main>{children}</main>
@@ -31,12 +34,7 @@ export default function Drawer({ children }) {
         ></label>
         <ul className="menu bg-base-200 min-h-full w-80 p-4">
           {/* Sidebar content here */}
-          <li>
-            <a>Sidebar Item 1</a>
-          </li>
-          <li>
-            <a>Sidebar Item 2</a>
-          </li>
+          <NavMenus />
         </ul>
       </div>
     </div>

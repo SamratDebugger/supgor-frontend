@@ -6,8 +6,8 @@ import { Link } from "react-router";
 export default function NavMain() {
   return (
     <div className="bg-base-100">
-      <div className="navbar max-w-360 p-5 mx-auto">
-        <div className="navbar-start">
+      <div className="navbar gap-5 justify-between max-w-360 p-5 mx-auto">
+        <div className="navbar-start w-auto">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-2"
@@ -31,12 +31,12 @@ export default function NavMain() {
           </div>
           <Link to="/">
             <img
-              className="max-w-50"
+              className="max-w-50 max-lg:hidden"
               src="/assets/images/logo.png"
               alt="logo"
             />
           </Link>
-          <div className="flex items-center gap-4 ml-10">
+          <div className="flex items-center gap-4 ml-10 max-lg:hidden">
             <div className="p-3 text-white text-xl bg-main rounded-full">
               <IoLocationOutline />
             </div>
@@ -46,8 +46,8 @@ export default function NavMain() {
             </div>
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex  ">
-          <label className="input">
+        <div className="navbar-center flex-1  lg:flex justify-center items-center  ">
+          <label className="input w-full rounded-full bg-base-300 border-none outline-0 max-lg:hidden">
             <svg
               className="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -64,23 +64,42 @@ export default function NavMain() {
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input type="search" required placeholder="Search" />
+            <input
+              type="search"
+              required
+              placeholder="Search Popular Product..."
+            />
           </label>
+          <Link to="/">
+            <img
+              className="max-w-50 lg:hidden"
+              src="/assets/images/logo.png"
+              alt="logo"
+            />
+          </Link>
         </div>
-        <div className="navbar-end gap-5 text-xl">
-          <div className="border rounded-full p-3">
+        <div className="navbar-end w-auto gap-5 text-xl">
+          <div className="border rounded-full p-3 max-lg:hidden">
             <CiUser />
           </div>
-          <div className="border rounded-full p-3">
+
+          <div className="border rounded-full p-3 relative max-lg:hidden">
             <CiHeart />
+            <span className="absolute -top-1 -right-1 bg-error text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              0
+            </span>
           </div>
-          <div className="border rounded-full p-3">
+
+          <div className="border rounded-full p-3 max-lg:hidden">
             <FaArrowRightArrowLeft />
           </div>
-          <div className="border rounded-full p-3">
-            <BsBag />
+          <div className="border rounded-full p-3 relative">
+            <BsBag />{" "}
+            <span className="absolute -top-1 -right-1 bg-error text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              0
+            </span>
           </div>
-          <div className="grid">
+          <div className="grid max-lg:hidden">
             <span>$00</span>
             <span className="text-xs">Your Cart</span>
           </div>
