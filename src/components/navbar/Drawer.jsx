@@ -19,20 +19,7 @@ export default function Drawer({ children }) {
         </div>
         <NavMain />
         <NavBottom />
-        <div className="navbar bg-base-300 w-full">
-          <div className="mx-2 flex-1 px-2">Navbar Title</div>
-          <div className="hidden flex-none lg:block">
-            <ul className="menu menu-horizontal">
-              {/* Navbar menu content here */}
-              <li>
-                <a>Navbar Item 1</a>
-              </li>
-              <li>
-                <a>Navbar Item 2</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+
         {/* Page content here */}
         <main>{children}</main>
       </div>
