@@ -5,6 +5,8 @@ import Bakery from "./pages/Bakery";
 import Categories from "./pages/Categories";
 import Contact from "./pages/Contact";
 import Layout from "./layout/Layout";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
           <Route path="/bakery" element={<Bakery />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Registration" element={<Registration />} />
         </Route>
       </Routes>
     </>
