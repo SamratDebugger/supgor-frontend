@@ -72,7 +72,7 @@ export default function NavMain() {
           </label>
           <Link to="/">
             <img
-              className="max-w-50 lg:hidden"
+              className="max-w-30 sm:max-w-50 lg:hidden"
               src="/assets/images/logo.png"
               alt="logo"
             />
@@ -80,7 +80,9 @@ export default function NavMain() {
         </div>
         <div className="navbar-end w-auto gap-5 text-xl">
           <div className="border rounded-full p-3 max-lg:hidden">
-            <CiUser />
+            <Link to="/login">
+              <CiUser />
+            </Link>
           </div>
 
           <div className="border rounded-full p-3 relative max-lg:hidden">

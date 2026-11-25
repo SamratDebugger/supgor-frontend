@@ -7,6 +7,7 @@ import Contact from "./pages/Contact";
 import Layout from "./layout/Layout";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
+import ResetPassword from "./pages/ResetPassword";
 
 export default function App() {
   return (
@@ -19,7 +20,8 @@ export default function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/Registration" element={<Registration />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
       </Routes>
     </>
