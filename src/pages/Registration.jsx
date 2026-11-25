@@ -2,12 +2,18 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router";
 import { auth } from "../../firebase/firebase.config";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 export default function Registration() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const email = e.target.email.value;
     const password = e.target.password.value;
+
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       toast.success("Registration Successful");
@@ -15,6 +21,8 @@ export default function Registration() {
     } catch (error) {
       toast.error("Registration Failed");
       error(error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
@@ -29,6 +37,7 @@ export default function Registration() {
           Enter Your Name
         </label>
         <input
+          required
           name="name"
           type="text"
           className="input w-full"
@@ -38,6 +47,7 @@ export default function Registration() {
           Email
         </label>
         <input
+          required
           name="email"
           type="email"
           className="input w-full"
@@ -47,27 +57,30 @@ export default function Registration() {
         <label htmlFor="password" className="label">
           Password
         </label>
-        <input
-          name="password"
-          type="password"
-          className="input w-full"
-          placeholder="Password"
-        />
-        <div className="flex justify-between items-center gap-5">
-          <p className="flex items-center gap-3">
-            <label htmlFor="remember">
-              <input type="checkbox" name="remember" />
-            </label>
-            Remember Me
-          </p>
-          <Link to="/reset-password" className="link link-hover link-info">
-            Lost Your Password?
-          </Link>
-        </div>
-        <button type="submit" className="btn bg-main mt-4 text-white">
-          Registration
+        <label className="input w-full" htmlFor="">
+          <input
+            required
+            name="password"
+            type={isVisible ? "text" : "password"}
+            placeholder="Password"
+          />
+
+          <button onClick={() => setIsVisible(!isVisible)} type="button">
+            {isVisible ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </label>
+        <button
+          onClick={() => setIsSubmitting(!isSubmitting)}
+          type="submit"
+          className="btn bg-main mt-4 text-white"
+        >
+          {isSubmitting ? (
+            <span className="loading loading-spinner"></span>
+          ) : (
+            "Registration"
+          )}
         </button>
-        <p>
+        <p className="text-center">
           Already have an account?{" "}
           <Link to="/login" className="link link-hover link-info">
             Login Here

@@ -1,15 +1,44 @@
-import { Link } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { auth } from "../../firebase/firebase.config";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 export default function Login() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Login Successful");
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error("Login Failed");
+      error(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-279px)]">
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-md border p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="fieldset bg-base-200 border-base-300 rounded-box w-md border p-4"
+      >
         <legend className="fieldset-legend">Login</legend>
 
         <label htmlFor="email" className="label">
           Email
         </label>
         <input
+          required
           name="email"
           type="email"
           className="input w-full"
@@ -19,12 +48,18 @@ export default function Login() {
         <label htmlFor="password" className="label">
           Password
         </label>
-        <input
-          name="password"
-          type="password"
-          className="input w-full"
-          placeholder="Password"
-        />
+        <label className="input w-full" htmlFor="">
+          <input
+            required
+            name="password"
+            type={isVisible ? "text" : "password"}
+            placeholder="Password"
+          />
+
+          <button onClick={() => setIsVisible(!isVisible)} type="button">
+            {isVisible ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </label>
         <div className="flex justify-between items-center gap-5">
           <p className="flex items-center gap-3">
             <label htmlFor="remember">
@@ -36,14 +71,23 @@ export default function Login() {
             Lost Your Password?
           </Link>
         </div>
-        <button className="btn bg-main mt-4 text-white">Login</button>
+        <button
+          onClick={() => setIsSubmitting(!isSubmitting)}
+          className="btn bg-main mt-4 text-white"
+        >
+          {isSubmitting ? (
+            <span className="loading loading-spinner "></span>
+          ) : (
+            "Login"
+          )}
+        </button>
         <p>
           Don't have an account?{" "}
           <Link to="/registration" className="link link-hover link-info">
             Register Now
           </Link>
         </p>
-      </fieldset>
+      </form>
     </div>
   );
 }
