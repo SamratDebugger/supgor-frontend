@@ -8,10 +8,15 @@ import Layout from "./layout/Layout";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import ResetPassword from "./pages/ResetPassword";
+import DashLayout from "./layout/DashLayout";
+import Protected from "./pages/Protected";
+import Dashboard from "./pages/Dashboard";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
     <>
+      <ToastContainer />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -22,6 +27,16 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+        </Route>
+
+        <Route
+          element={
+            <Protected>
+              <DashLayout />
+            </Protected>
+          }
+        >
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </>
