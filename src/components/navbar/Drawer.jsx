@@ -27,7 +27,9 @@ export default function Drawer({ children }) {
 
         {/* Page content here */}
         <main>{children}</main>
-        <Footer />
+        <div className="bg-white">
+          <Footer />
+        </div>
         <CopyRight />
       </div>
       <div className="drawer-side">
