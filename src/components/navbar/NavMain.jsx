@@ -5,7 +5,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router";
 export default function NavMain() {
   return (
-    <header className="bg-base-100 sticky top-0 z-50 max-lg:shadow-lg">
+    <header className="bg-base-100 sticky top-0 z-10 max-lg:shadow-lg">
       <div className="navbar gap-5 justify-between max-w-360 px-5 mx-auto ">
         <div className="navbar-start w-auto">
           <div className="flex-none lg:hidden">

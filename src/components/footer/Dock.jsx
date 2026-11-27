@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export default function Dock() {
   return (
-    <div className="dock md:hidden">
+    <div className="dock md:hidden shadow-lg">
       <Link to="/">
         <button className="flex flex-col items-center">
           <FaHouse className="size-[1.2em]" />

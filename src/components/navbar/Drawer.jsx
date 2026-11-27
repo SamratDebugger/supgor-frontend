@@ -40,7 +40,7 @@ export default function Drawer({ children }) {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 min-h-full w-80 p-4">
+        <ul className="menu bg-base-200 min-h-full w-80 p-4 z-50">
           {/* Sidebar content here */}
           <NavMenus />
         </ul>
