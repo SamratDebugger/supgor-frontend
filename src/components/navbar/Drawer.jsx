@@ -1,4 +1,5 @@
 import CopyRight from "../footer/CopyRight";
+import Dock from "../footer/Dock";
 import Footer from "../footer/Footer";
 import Alert from "./Alert";
 import NavBottom from "./NavBottom";
@@ -31,6 +32,7 @@ export default function Drawer({ children }) {
           <Footer />
         </div>
         <CopyRight />
+        <Dock />
       </div>
       <div className="drawer-side">
         <label
